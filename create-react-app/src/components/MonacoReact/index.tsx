@@ -1,26 +1,285 @@
-import { useRef } from "react";
+/*
+ * @Date: 2021-10-22 07:18:26
+ * @LastEditTime: 2021-11-20 11:29:07
+ */
+import { useState } from "react";
 import Editor, { EditorProps } from "@monaco-editor/react";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 function MonacoReact() {
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
+  const [height, setHeight] = useState<number>();
 
   const handleEditorDidMount: EditorProps["onMount"] = (editor) => {
-    editorRef.current = editor;
-  };
+    const lineCount = editor.getModel()?.getLineCount();
+    const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
 
-  const showValue = () => {
-    console.log(editorRef.current?.getValue());
+    setHeight(lineCount! * lineHeight);
+
+    editor.layout();
   };
 
   return (
     <>
-      <button onClick={showValue}>Show value</button>
       <Editor
         defaultLanguage="javascript"
-        defaultValue="// some comment"
-        height="90vh"
+        defaultValue={`function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+      
+      function test() {
+          console.log(123)
+      }
+
+      function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+    
+    function test() {
+        console.log(123)
+    }
+
+    function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+  
+  function test() {
+      console.log(123)
+  }
+
+  function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+    console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+
+function test() {
+  console.log(123)
+}
+      
+      function test() {
+          console.log(123)
+      }`}
+        height={height}
         onMount={handleEditorDidMount}
+        options={{
+          scrollBeyondLastLine: false,
+          scrollbar: {
+            alwaysConsumeMouseWheel: false,
+          },
+          minimap: {
+            enabled: false,
+          },
+        }}
       />
     </>
   );
